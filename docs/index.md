@@ -27,7 +27,7 @@ with the performance of native Rust networking.
 
 <div class="feature-card" markdown>
 
-### :material-lightning-bolt: Blazing Fast
+### Blazing Fast
 
 2.3× faster than httpx sequentially, **12× faster** under concurrency.
 The Rust transport layer releases the GIL for true parallel HTTP.
@@ -36,7 +36,7 @@ The Rust transport layer releases the GIL for true parallel HTTP.
 
 <div class="feature-card" markdown>
 
-### :material-swap-horizontal: Drop-In Replacement
+### Drop-In Replacement
 
 100% httpx API compatible. `Client`, `AsyncClient`, `Response`, `Headers`,
 auth flows, streaming, event hooks — it's all there.
@@ -45,7 +45,7 @@ auth flows, streaming, event hooks — it's all there.
 
 <div class="feature-card" markdown>
 
-### :material-package-variant-closed: Zero Dependencies
+### Zero Dependencies
 
 No `httpcore`, `certifi`, `anyio`, or `idna`. HTTP, TLS, compression,
 SOCKS proxy, and IDNA — all handled natively in Rust.
@@ -54,7 +54,7 @@ SOCKS proxy, and IDNA — all handled natively in Rust.
 
 <div class="feature-card" markdown>
 
-### :material-language-rust: Rust-Powered
+### Rust-Powered
 
 Built with [PyO3](https://pyo3.rs/), [reqwest](https://github.com/seanmonstar/reqwest),
 and [tokio](https://tokio.rs/). Native gzip, brotli, zstd, and deflate compression.
@@ -63,7 +63,7 @@ and [tokio](https://tokio.rs/). Native gzip, brotli, zstd, and deflate compressi
 
 <div class="feature-card" markdown>
 
-### :material-rocket-launch: Exclusive Extensions
+### Exclusive Extensions
 
 `gather()` for concurrent batch requests, `paginate()` for auto-pagination,
 and raw API methods for maximum-speed dispatch.
@@ -72,7 +72,7 @@ and raw API methods for maximum-speed dispatch.
 
 <div class="feature-card" markdown>
 
-### :material-test-tube: Battle Tested
+### Battle Tested
 
 Validated against the **complete httpx test suite** — 1300+ tests ported
 1:1 from the original project. [AI-built with human oversight](how-it-was-built.md) via an iterative agent loop.
@@ -138,12 +138,12 @@ All benchmarks run against **10 HTTP libraries** on a local ASGI server, 100 rou
 | 50 Sequential GETs | **7.84** | 6.52 | 6.33 | 8.98 | 10.73 | 12.91 | 15.17 | 17.76 | 18.78 | 19.65 |
 | 50 Concurrent GETs | **5.23** | 7.31 | 6.56 | 6.23 | 7.85 | 12.31 | 16.26 | 10.15 | 70.23 | 21.14 |
 
-!!! tip "Key takeaways"
-
-    - **#1 under concurrency** — faster than all other libraries
-    - **~2.3× faster** than httpx for sequential workloads
-    - **~12× faster** than httpx under concurrency (GIL-free Rust)
-    - Competitive with bare-metal libraries while offering the full httpx API
+> **Key takeaways**
+>
+> - **#1 under concurrency** — faster than all other libraries
+> - **~2.3× faster** than httpx for sequential workloads
+> - **~12× faster** than httpx under concurrency (GIL-free Rust)
+> - Competitive with bare-metal libraries while offering the full httpx API
 
 ---
 

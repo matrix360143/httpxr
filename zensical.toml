@@ -1,0 +1,51 @@
+[project]
+site_name = "httpxr"
+site_url = "https://bmsuisse.github.io/httpxr"
+site_description = "A 1:1 Rust port of httpx — same API, faster execution."
+site_author = "Dominik Peter"
+repo_url = "https://github.com/bmsuisse/httpxr"
+repo_name = "bmsuisse/httpxr"
+extra_css = ["assets/extra.css"]
+
+[project.theme]
+variant = "modern"
+
+[project.extra]
+social = [
+  { icon = "fontawesome/brands/github", link = "https://github.com/bmsuisse/httpxr" },
+  { icon = "fontawesome/brands/python", link = "https://pypi.org/project/httpxr/" },
+]
+
+[project.markdown_extensions]
+admonition = {}
+"pymdownx.details" = {}
+"pymdownx.superfences" = {}
+"pymdownx.highlight" = { anchor_linenums = true, line_spans = "__span", pygments_lang_class = true }
+"pymdownx.inlinehilite" = {}
+"pymdownx.snippets" = {}
+"pymdownx.tabbed" = { alternate_style = true }
+
+[project.nav]
+"Home" = "index.md"
+"Quick Start" = "quickstart.md"
+
+[project.nav."Guide"]
+"Clients" = "clients.md"
+"Requests & Responses" = "requests-responses.md"
+"Headers, Params & Cookies" = "headers-params-cookies.md"
+"Authentication" = "authentication.md"
+"Streaming" = "streaming.md"
+"Extensions" = "extensions.md"
+"Server-Sent Events" = "sse.md"
+"Error Handling" = "error-handling.md"
+"Timeouts & Limits" = "timeouts-limits.md"
+"Resilience" = "resilience.md"
+
+[project.nav."Reference"]
+"CLI" = "cli.md"
+"Compatibility Shim" = "compat.md"
+"Testing" = "testing.md"
+"Migration from httpx" = "migration.md"
+"Benchmarks" = "benchmarks.md"
+"Changelog" = "changelog.md"
+"How It Was Built" = "how-it-was-built.md"
