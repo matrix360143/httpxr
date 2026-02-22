@@ -40,7 +40,9 @@ httpxr is a 1:1 Rust port of httpx for performance. It uses:
 ### Testing
 - Always run tests before committing
 - Run e2e tests after implementing new features
-- Create a branch for each feature
+
+### Branching
+- Work directly on `main` — do **not** create feature branches
 
 ## Releasing a New Version
 
