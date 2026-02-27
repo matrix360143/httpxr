@@ -22,22 +22,34 @@ def _isolate_compat() -> None:  # type: ignore[return]
     # Save original httpx entry (real httpx is installed)
     original = sys.modules.get("httpx")
 
+    # Save original submodule entries
+    submodule_originals = {k: sys.modules.get(k) for k in compat_mod._SUBMODULE_ALIASES}
+
     # Remove httpx from sys.modules so each test starts clean
     sys.modules.pop("httpx", None)
+    for k in compat_mod._SUBMODULE_ALIASES:
+        sys.modules.pop(k, None)
 
     # Reset internal state
     compat_mod._shim_active = False
     compat_mod._original_httpx = None
+    compat_mod._original_submodules.clear()
 
     yield  # type: ignore[misc]
 
     # Restore original state after test
     compat_mod._shim_active = False
     compat_mod._original_httpx = None
+    compat_mod._original_submodules.clear()
     if original is not None:
         sys.modules["httpx"] = original
     else:
         sys.modules.pop("httpx", None)
+    for k, v in submodule_originals.items():
+        if v is not None:
+            sys.modules[k] = v
+        else:
+            sys.modules.pop(k, None)
 
 
 def _activate_shim() -> None:
@@ -158,3 +170,41 @@ class TestCompatShim:
         assert httpx.HTTPError is httpxr.HTTPError  # type: ignore[union-attr]
         assert httpx.RequestError is httpxr.RequestError  # type: ignore[union-attr]
         assert httpx.TimeoutException is httpxr.TimeoutException  # type: ignore[union-attr]
+
+    def test_submodule_httpx_config_available(self) -> None:
+        """httpx._config submodule provides DEFAULT_TIMEOUT_CONFIG."""
+        _activate_shim()
+
+        assert "httpx._config" in sys.modules
+        config_mod = sys.modules["httpx._config"]
+        assert hasattr(config_mod, "DEFAULT_TIMEOUT_CONFIG")
+        assert isinstance(config_mod.DEFAULT_TIMEOUT_CONFIG, httpxr.Timeout)  # type: ignore[union-attr]
+
+    def test_submodule_httpx_urls_available(self) -> None:
+        """After enabling the shim, `from httpx._urls import URL` works."""
+        _activate_shim()
+
+        assert "httpx._urls" in sys.modules
+        urls_mod = sys.modules["httpx._urls"]
+        assert hasattr(urls_mod, "URL")
+        assert urls_mod.URL is httpxr.URL  # type: ignore[union-attr]
+
+    def test_submodule_cleanup_on_disable(self) -> None:
+        """disable() should remove the submodule aliases."""
+        _activate_shim()
+        assert "httpx._config" in sys.modules
+
+        compat_mod.disable()
+        assert "httpx._config" not in sys.modules
+        assert "httpx._urls" not in sys.modules
+
+    def test_isinstance_check_works(self) -> None:
+        """isinstance should work through the shim."""
+        _activate_shim()
+
+        httpx = sys.modules["httpx"]
+        client = httpxr.Client(
+            transport=httpxr.MockTransport(lambda r: httpxr.Response(200))
+        )
+        assert isinstance(client, httpx.Client)  # type: ignore[union-attr]
+        client.close()

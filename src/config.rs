@@ -90,6 +90,16 @@ impl Timeout {
             && self.pool == other.pool
     }
 
+    fn __hash__(&self) -> u64 {
+        use std::hash::{Hash, Hasher};
+        let mut hasher = std::collections::hash_map::DefaultHasher::new();
+        self.connect.map(|v| v.to_bits()).hash(&mut hasher);
+        self.read.map(|v| v.to_bits()).hash(&mut hasher);
+        self.write.map(|v| v.to_bits()).hash(&mut hasher);
+        self.pool.map(|v| v.to_bits()).hash(&mut hasher);
+        hasher.finish()
+    }
+
     fn __repr__(&self) -> String {
         fn fmt_opt(v: Option<f64>) -> String {
             match v {

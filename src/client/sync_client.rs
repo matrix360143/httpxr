@@ -640,14 +640,16 @@ impl Client {
         })
     }
 
-    #[pyo3(signature = (request, *, auth=None, follow_redirects=None))]
+    #[pyo3(signature = (request, *, stream=false, auth=None, follow_redirects=None))]
     fn send(
         &self,
         py: Python<'_>,
         request: &Request,
+        stream: bool,
         auth: Option<&Bound<'_, PyAny>>,
         follow_redirects: Option<bool>,
     ) -> PyResult<Response> {
+        let _ = stream;
         let _ = auth;
         let start = Instant::now();
         let t_bound = self.transport.bind(py);

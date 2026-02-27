@@ -645,6 +645,20 @@ class TestConfig:
         assert t1 == t2
         assert "Timeout" in repr(t1)
 
+    def test_timeout_hashable(self):
+        """Timeout must be hashable for lru_cache / dict keys."""
+        t1 = httpxr.Timeout(5.0)
+        t2 = httpxr.Timeout(5.0)
+        assert hash(t1) == hash(t2)
+
+        # Different timeouts should (usually) have different hashes
+        t3 = httpxr.Timeout(10.0)
+        assert hash(t1) != hash(t3)
+
+        # Can be used as dict keys
+        d: dict[httpxr.Timeout, str] = {t1: "a"}
+        assert d[t2] == "a"
+
     def test_limits_defaults(self):
         lim = httpxr.Limits()
         assert lim.max_connections is None or isinstance(lim.max_connections, int)
@@ -931,6 +945,14 @@ class TestClientMethods:
         req = self.client.build_request("GET", "http://example.com/")
         r = self.client.send(req, follow_redirects=False)
         assert r.status_code == 200
+
+    def test_send_with_stream_kwarg(self):
+        """OpenAI SDK calls client.send(request, stream=True)."""
+        req = self.client.build_request("GET", "http://example.com/")
+        r = self.client.send(req, stream=True)
+        assert r.status_code == 200
+        r2 = self.client.send(req, stream=False)
+        assert r2.status_code == 200
 
 
 # ---------------------------------------------------------------------------
